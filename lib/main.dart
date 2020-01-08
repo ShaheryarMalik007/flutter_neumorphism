@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: NeoCircularButton(
+      child: NeuCircularButton(
         child: Icon(Icons.favorite),
         onTap: () => print("hello"),
         radius: 500,

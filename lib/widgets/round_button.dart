@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
-
-class NeoCircularButton extends StatefulWidget {
-  NeoCircularButton({@required this.onTap, @required this.child, this.radius});
+class NeuCircularButton extends StatefulWidget {
+  NeuCircularButton(
+      {@required this.onTap, @required this.child, this.radius});
   final VoidCallback onTap;
   final double radius;
   final Widget child;
 
   @override
-  _NeoCircularButtonState createState() => _NeoCircularButtonState();
+  _NeuCircularButtonState createState() => _NeuCircularButtonState();
 }
 
-
-class _NeoCircularButtonState extends State<NeoCircularButton> {
+class _NeuCircularButtonState extends State<NeuCircularButton> {
   static Color _lightShadow = Colors.grey[300];
   static Color _darkShadow = Colors.grey;
 
@@ -31,10 +30,9 @@ class _NeoCircularButtonState extends State<NeoCircularButton> {
   Color _top = _lightShadow;
   Color _bottom = _darkShadow;
 
-  
   List<Color> _currentFill = _fill;
 
-  void _toggle(){
+  void _toggle() {
     print("Switching");
     if (_top == _lightShadow && _bottom == _darkShadow) {
       //down position
@@ -48,7 +46,7 @@ class _NeoCircularButtonState extends State<NeoCircularButton> {
       _currentFill = _fill;
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +55,7 @@ class _NeoCircularButtonState extends State<NeoCircularButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            onTap: (){
+            onTap: () {
               setState(() {
                 _toggle();
               });
