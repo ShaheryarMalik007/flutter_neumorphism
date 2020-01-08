@@ -13,7 +13,7 @@ class NeoCircularButton extends StatefulWidget {
 
 
 class _NeoCircularButtonState extends State<NeoCircularButton> {
-  static Color _lightShadow = Colors.grey[200];
+  static Color _lightShadow = Colors.grey[300];
   static Color _darkShadow = Colors.grey;
 
   static List<Color> _fill = <Color>[
@@ -37,10 +37,12 @@ class _NeoCircularButtonState extends State<NeoCircularButton> {
   void _toggle(){
     print("Switching");
     if (_top == _lightShadow && _bottom == _darkShadow) {
+      //down position
       _top = Colors.transparent;
       _bottom = Colors.transparent;
       _currentFill = _inside;
     } else if (_top == Colors.transparent && _bottom == Colors.transparent) {
+      //up position
       _top = _lightShadow;
       _bottom = _darkShadow;
       _currentFill = _fill;
@@ -54,38 +56,34 @@ class _NeoCircularButtonState extends State<NeoCircularButton> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            height: widget.radius / 2,
-            decoration: BoxDecoration(
-              color: Colors.grey[400],
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: _currentFill,
-                stops: [0.2, 0.5, 1]
-              ),
-
-              boxShadow: [
-                BoxShadow(
-                  color: _top,
-                  offset: Offset(-10, -10),
-                  blurRadius: 15,
-                  spreadRadius: 0.1
-                ),
-                BoxShadow(
-                  color: _bottom,
-                  offset: Offset(10, 10),
-                  blurRadius: 15,
-                  spreadRadius: 0.1
-                ),
-              ]
-            ),
-            child: GestureDetector(
-              onTap: () => {
-                setState(() => _toggle()),
-                widget.onTap,
-              },
+          GestureDetector(
+            onTap: (){
+              setState(() {
+                _toggle();
+              });
+            },
+            child: Container(
+              height: widget.radius / 2,
+              decoration: BoxDecoration(
+                  color: Colors.grey[400],
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: _currentFill,
+                      stops: [0.2, 0.5, 1]),
+                  boxShadow: [
+                    BoxShadow(
+                        color: _top,
+                        offset: Offset(-10, -10),
+                        blurRadius: 15,
+                        spreadRadius: 0.1),
+                    BoxShadow(
+                        color: _bottom,
+                        offset: Offset(10, 10),
+                        blurRadius: 15,
+                        spreadRadius: 0.1),
+                  ]),
               child: Center(
                 child: widget.child,
               ),
